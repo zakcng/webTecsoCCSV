@@ -1,10 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-<select>
-{% for store in stores %}
-  <option value="{{ store }}">{{ store }}</option>
-{% endfor %}
-</select>
+    <h2>Select a store from the list:</h2>
+
+    <div class="picker">
+        <div class="row">
+            <div class="col-4">
+                <select id="mySelect" data-show-content="true" class="form-control">
+                    {% for store in stores %}
+                        <option>{{ store }}</option><
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

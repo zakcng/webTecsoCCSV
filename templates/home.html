@@ -3,12 +3,20 @@
 
 
 {% block body %}
-    <h1>Input Tesco Credit Card CSV file:</h1>
 
-    <form action="/results" method="post" enctype="multipart/form-data">
-        <label class="btn btn-default btn-file">
-            Browse <input type="file" name="data_file" style="display: none;">
-        </label>
-        <input type="submit"/>
+
+ <form action="/results" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="exampleInputFile">Select a Tesco CSV file:</label>
+            <input type="file" name="data_file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
+            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the
+                above input. It's a bit lighter and easily wraps to a new line.
+            </small>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control" id="usr">
+        </div>
+
+ </form>
     </form>
 {% endblock %}

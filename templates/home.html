@@ -1,3 +1,4 @@
+
 {% extends 'layout.html' %}
 
 
@@ -5,18 +6,15 @@
 {% block body %}
 
 
- <form action="/results" method="post" enctype="multipart/form-data">
-        <div class="form-group">
+    <form action="/results" method="post" enctype="multipart/form-data">
+        <div class="form-group border">
             <label for="exampleInputFile">Select a Tesco CSV file:</label>
-            <input type="file" name="data_file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the
-                above input. It's a bit lighter and easily wraps to a new line.
-            </small>
-        </div>
-        <div class="form-group">
-            <input type="submit" class="form-control" id="usr">
-        </div>
+            <input type="file" name="data_file" class="form-control-file">
 
- </form>
+
+      <button type="submit" class="btn btn-dark">Submit</button>
+            </div>
+
+
     </form>
 {% endblock %}

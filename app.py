@@ -1,52 +1,36 @@
 from flask import Flask, make_response, request, render_template
 import io
 import csv
+import collections
 
 app = Flask(__name__)
 
-def transform(text_file_contents):
-    return text_file_contents.replace("=", ",")
-
-
 @app.route('/')
-
 def index():
     return render_template('home.html')
 
-def form():
-    return """
-        <html>
-            <body>
-                <h1>Transform a file demo</h1>
 
-                <form action="/submit" method="post" enctype="multipart/form-data">
-                    <input type="file" name="data_file" />
-                    <input type="submit" />
-                </form>
-            </body>
-        </html>
-    """
+@app.route('/results', methods=["POST"])
 
-@app.route('/submit', methods=["POST"])
-def transform_view():
+def results():
+    stores = []
     f = request.files['data_file']
     if not f:
         return "No file"
 
-    stream = io.StringIO(f.stream.read().decode("iso8859_15"), newline=None)
+    stream = io.StringIO(f.stream.read().decode("iso8859_15"), newline='')
     csv_input = csv.reader(stream)
-    #print("file contents: ", file_contents)
-    #print(type(file_contents))
-    print(csv_input)
+
     for row in csv_input:
-        print(row)
+        #del row[0]
+        if 'D' in row[8]: #Check for debit not credit
+            stores.append(row[3])
 
-    stream.seek(0)
-    result = transform(stream.read())
+    del stores[0]
+    stores = set(stores)
 
-    response = make_response(result)
-    response.headers["Content-Disposition"] = "attachment; filename=result.csv"
-    return response
+    return render_template('results.html',stores=stores)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

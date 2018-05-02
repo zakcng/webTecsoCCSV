@@ -3,12 +3,12 @@
 
 
 {% block body %}
-<h1>Input Tesco Credit Card CSV file:</h1>
+    <h1>Input Tesco Credit Card CSV file:</h1>
 
-         <form action="/submit" method="post" enctype="multipart/form-data">
-         <label class="btn btn-default btn-file">
-    Browse <input type="file" name="data_file" style="display: none;">
-</label>
-                    <input type="submit" />
-                </form>
+    <form action="/results" method="post" enctype="multipart/form-data">
+        <label class="btn btn-default btn-file">
+            Browse <input type="file" name="data_file" style="display: none;">
+        </label>
+        <input type="submit"/>
+    </form>
 {% endblock %}

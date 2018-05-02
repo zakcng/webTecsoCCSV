@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<select>
+{% for store in stores %}
+  <option value="{{ store }}">{{ store }}</option>
+{% endfor %}
+</select>
+
+{% endblock %}

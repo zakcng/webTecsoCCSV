@@ -1,4 +1,4 @@
-from flask import Flask, make_response, request
+from flask import Flask, make_response, request, render_template
 import io
 import csv
 
@@ -9,13 +9,17 @@ def transform(text_file_contents):
 
 
 @app.route('/')
+
+def index():
+    return render_template('home.html')
+
 def form():
     return """
         <html>
             <body>
                 <h1>Transform a file demo</h1>
 
-                <form action="/transform" method="post" enctype="multipart/form-data">
+                <form action="/submit" method="post" enctype="multipart/form-data">
                     <input type="file" name="data_file" />
                     <input type="submit" />
                 </form>
@@ -23,7 +27,7 @@ def form():
         </html>
     """
 
-@app.route('/transform', methods=["POST"])
+@app.route('/submit', methods=["POST"])
 def transform_view():
     f = request.files['data_file']
     if not f:
@@ -45,4 +49,4 @@ def transform_view():
     return response
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001, debug=True)
+    app.run(debug=True)

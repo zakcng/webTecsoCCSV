@@ -1,18 +1,27 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <h2>Select a store from the list:</h2>
+  <h2>Select a store from the list:</h2>
 
-    <div class="picker">
-        <div class="row">
-            <div class="col-4">
-                <select id="mySelect" data-show-content="true" class="form-control">
-                    {% for store in stores %}
-                        <option>{{ store }}</option><
-                    {% endfor %}
-                </select>
-            </div>
+
+    <form action = "/" method = "post">
+    <div class="container">
+    <div class="row">
+        <div class="col-4">
+            <select id="mySelect" data-show-content="true" class="form-control" name="storeValue">
+                {% for store in stores %}
+        <option>{{ store }}</option><
+    {% endfor %}
+            </select>
         </div>
     </div>
+</div>
+
+
+
+    <div class="selectStore">
+      <button type="submit" class="btn btn-dark" name="storeSubmit">Select</button>
+    </div>
+    </form>
 
 {% endblock %}

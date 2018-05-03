@@ -33,6 +33,12 @@ def results():
 
     return render_template('results.html',stores=stores)
 
+@app.route('/', methods=["POST"])
+
+def storeReturn():
+    if request.method == 'POST':
+        storeValue = request.form.get("storeValue")
+        print(storeValue)
 
 if __name__ == "__main__":
     app.run(debug=True)
